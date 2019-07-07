@@ -3,9 +3,12 @@ import flatmap from 'gulp-flatmap';
 import path from 'path';
 import through from 'through2';
 import Vinyl from 'vinyl';
+import PluginError from 'plugin-error';
+
+const PLUGIN_NAME = 'gulp-map-transform';
 
 type Transformer = (
-  stream: NodeJS.ReadableStream
+  stream: NodeJS.ReadStream
 ) => NodeJS.ReadWriteStream;
 
 interface TransformedPaths {
@@ -117,6 +120,16 @@ function mapTransform(options: MapTransformOptions) {
 
   return through.obj(
     function(file: any, _enc: any, cb: any) {
+      // Ensure file is a buffer
+      if (file.isStream()) {
+        this.emit(
+          'error',
+          new PluginError(PLUGIN_NAME, 'Streams are not supported!')
+        );
+
+        return cb();
+      }
+
       // Push the raw source files for later
       srcFiles.push(file);
 

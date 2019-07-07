@@ -4,12 +4,15 @@
   "description": "A gulp plugin for transforming file references inside a file with a different stream",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "files": [ "dist" ],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "clean": "rimraf dist",
     "build": "npm run clean && tsc",
     "lint": "tslint \"src/**/*.ts\" \"tests/**/*.ts\"",
-    "test": "npm run lint"
+    "jest": "jest --config jest.config.json",
+    "test": "npm run lint && npm run jest"
   },
   "repository": {
     "type": "git",
@@ -33,16 +36,21 @@
   "homepage": "https://github.com/davideperozzi/gulp-map-transform#readme",
   "dependencies": {
     "gulp-flatmap": "^1.0.2",
+    "plugin-error": "^1.0.1",
     "through2": "^3.0.1",
     "tslib": "^1.10.0"
   },
   "devDependencies": {
     "@types/gulp": "^4.0.6",
+    "@types/jest": "^24.0.15",
     "@types/node": "^12.0.12",
+    "@types/rimraf": "^2.0.2",
     "@types/through2": "^2.0.34",
     "@types/vinyl": "^2.0.3",
     "gulp": "^4.0.2",
+    "jest": "^24.8.0",
     "rimraf": "^2.6.3",
+    "ts-jest": "^24.0.2",
     "tslint": "^5.18.0",
     "typescript": "^3.5.2"
   }
