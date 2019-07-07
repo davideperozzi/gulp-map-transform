@@ -1,6 +1,6 @@
 # gulp-map-transform
 
-[![Version](https://flat.badgen.net/npm/v/gulp-map-transform/scroller)](https://www.npmjs.com/package/gulp-map-transform)
+[![Version](https://flat.badgen.net/npm/v/gulp-map-transform)](https://www.npmjs.com/package/gulp-map-transform)
 [![CircleCI](https://flat.badgen.net/circleci/github/davideperozzi/gulp-map-transform/master)](https://circleci.com/gh/davideperozzi/gulp-map-transform/tree/master)
 [![License](https://flat.badgen.net/badge/license/MIT/blue)](./LICENSE)
 
