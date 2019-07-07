@@ -22,7 +22,7 @@ Given this section of a html file:
 ```html
 ...
 <head>
-  <link rel="stylesheet" href="@styles/test.css" />
+  <link rel="stylesheet" href="@styles/test.scss" />
 </head>
 ...
 ```
