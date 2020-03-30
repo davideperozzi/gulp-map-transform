@@ -31,6 +31,7 @@ interface MapTransformOptions {
   rewrite: (path: string) => string;
   transform: Transformer;
   rootPath?: string;
+  rootPrefix?: string;
 }
 
 function scanFile(
@@ -64,7 +65,8 @@ function replacePaths(
   paths: TransformedPaths,
   stash: FileStash,
   search: RegExp,
-  rootPath?: string
+  rootPath?: string,
+  rootPrefix?: string
 ) {
   for (const p in paths) {
     if (paths.hasOwnProperty(p)) {
@@ -74,9 +76,13 @@ function replacePaths(
 
           if (item.realPath === p) {
             content = content.replace(search, (match) => {
+              const prefix = typeof rootPrefix === 'string'
+                ? rootPrefix
+                : (rootPath  ? '/' : '')
+
               return match.replace(
                 item.virtPath,
-                (rootPath ? '/' : '') + path.relative(
+                prefix + path.relative(
                   rootPath || path.dirname(fromPath),
                   paths[p]
                 )
@@ -177,7 +183,8 @@ function mapTransform(options: MapTransformOptions) {
                   transformedPaths,
                   fileStash,
                   options.search,
-                  options.rootPath
+                  options.rootPath,
+                  options.rootPrefix
                 )
               );
             }
