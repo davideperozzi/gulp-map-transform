@@ -78,7 +78,7 @@ function replacePaths(
             content = content.replace(search, (match) => {
               const prefix = typeof rootPrefix === 'string'
                 ? rootPrefix
-                : (rootPath  ? '/' : '')
+                : (rootPath  ? '/' : '');
 
               return match.replace(
                 item.virtPath,
